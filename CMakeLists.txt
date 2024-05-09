@@ -41,7 +41,7 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${METIS_COPTIONS}")
 # Add include directories.
 # i.e., the -I equivalent
 add_subdirectory(GKlib)
-include_directories(build/xinclude)
+include_directories("include")
 include_directories(${GKLIB_PATH}/include)
 include_directories(${CMAKE_INSTALL_PREFIX}/include)
 
