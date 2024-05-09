@@ -34,9 +34,13 @@ include(./conf/gkbuild.cmake)
 #
 #set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${METIS_COPTIONS}")
 
+set(METIS_COPTIONS "${METIS_COPTIONS} -DIDXTYPEWIDTH=64")
+set(METIS_COPTIONS "${METIS_COPTIONS} -DREALTYPEWIDTH=64")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${METIS_COPTIONS}")
 
 # Add include directories.
 # i.e., the -I equivalent
+add_subdirectory(GKlib)
 include_directories(build/xinclude)
 include_directories(${GKLIB_PATH}/include)
 include_directories(${CMAKE_INSTALL_PREFIX}/include)
@@ -47,6 +51,4 @@ link_directories(${GKLIB_PATH}/lib)
 link_directories(${CMAKE_INSTALL_PREFIX}/lib)
 
 # Recursively look for CMakeLists.txt in subdirs.
-add_subdirectory("build/xinclude")
 add_subdirectory("libmetis")
-add_subdirectory("programs")
