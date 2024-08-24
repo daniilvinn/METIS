@@ -126,22 +126,9 @@ endif(HAVE_GETLINE)
 
 # Custom check for TLS.
 if(MSVC)
-   set(GKlib_COPTIONS "${GKlib_COPTIONS} -D__thread=__declspec(thread)")
-
-  # This if checks if that value is cached or not.
-  if("${HAVE_THREADLOCALSTORAGE}" MATCHES "^${HAVE_THREADLOCALSTORAGE}$")
-    try_compile(HAVE_THREADLOCALSTORAGE
-      ${CMAKE_BINARY_DIR}
-      ${GKLIB_PATH}/conf/check_thread_storage.c)
-    if(HAVE_THREADLOCALSTORAGE)
-      message(STATUS "checking for thread-local storage - found")
-    else()
-      message(STATUS "checking for thread-local storage - not found")
-    endif()
-  endif()
-  if(NOT HAVE_THREADLOCALSTORAGE)
-    set(GKlib_COPTIONS "${GKlib_COPTIONS} -D__thread=")
-  endif()
+  set(GKlib_COPTIONS "${GKlib_COPTIONS} -D__thread=__declspec(thread)")
+else()
+  set(GKlib_COPTIONS "${GKlib_COPTIONS} -D__thread=")
 endif()
 
 # Finally set the official C flags.
